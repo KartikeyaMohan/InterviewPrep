@@ -1,4 +1,4 @@
-# Android Interview Notes
+# Android Questions
 
 ## 1. What is Android?
 
@@ -63,15 +63,9 @@ Example:
 
 ## 7. What is the difference between background service and foreground service?
 
-  ------------------------------------------------------------------------
-  Type           Description                       Example
-  -------------- --------------------------------- -----------------------
-  **Background   Runs tasks not visible to the     Sync or data upload
-  Service**      user; may be killed by system     
-
-  **Foreground   Displays a persistent             Music, navigation
-  Service**      notification; not easily killed   
-  ------------------------------------------------------------------------
+- **Background Service**: Runs tasks not visible to the user; may 
+  be killed by system
+- **Foreground Service**: Displays a persistent notification; not easily killed
 
 ## 8. What is the use of Broadcast Receivers?
 
@@ -104,40 +98,50 @@ Frameworks: **Hilt**, **Dagger**, **Koin**
 
 ## 12. What is the difference between DataStore and SharedPreferences? What is better and why?
 
-  Feature         SharedPreferences           DataStore
-  --------------- --------------------------- -------------------------------------
-  API Type        Synchronous                 Asynchronous (Coroutine/Flow based)
-  Data Loss       Possible (commit failure)   Safe and consistent
-  Performance     Slower for large data       Better performance
-  Thread Safety   Manual                      Automatic
+- **SharedPreferences**
+    - API Type: Synchronous
+    - Data Loss: Possible (commit failure)
+    - Performance: Slower for large data
+    - Thread Safety: Manual
+- **DataStore**
+    - API Type: Asynchronous (Coroutine/Flow based)
+    - Data Loss: Safe and consistent
+    - Performance: Better performance
+    - Thread Safety: Automatic
 
 **DataStore** (Proto or Preferences) is better --- modern, non-blocking,
 and consistent.
 
 ## 13. Flow vs StateFlow vs SharedFlow vs LiveData vs Channel vs MutableLiveData
 
-  ------------------------------------------------------------------------------------------
-  Type                  Hot/Cold      Replay         Lifecycle aware        Common use
-  --------------------- ------------- -------------- ---------------------- ----------------
-  **Flow**              Cold          No             No                     Stream data
-                                                                            sequentially
-
-  **StateFlow**         Hot           Latest value   No                     UI state
-                                                                            management
-
-  **SharedFlow**        Hot           Configurable   No                     One-to-many
-                                                                            event sharing
-
-  **LiveData**          Hot           Latest value   ✅                     UI data binding
-
-  **MutableLiveData**   Mutable                                             Update UI data
-                        version of                                          
-                        LiveData                                            
-
-  **Channel**           Cold-ish      One-time       No                     Send one-shot
-                                                                            events between
-                                                                            coroutines
-  ------------------------------------------------------------------------------------------
+- **Flow**
+    - Start: Cold
+    - Replay: No
+    - Lifecycle aware: No
+    - Common Use: Stream data sequentially
+- **StateFlow**
+    - Start: Hot
+    - Replay: Latest value
+    - Lifecycle aware: No
+    - Common Use: UI state management
+- **SharedFlow**
+    - Start: Hot
+    - Replay: Configurable
+    - Lifecycle aware: No
+    - Common Use: One-to-many event sharing
+- **LiveData**
+    - Start: Hot
+    - Replay: Latest value
+    - Lifecycle aware: Yes
+    - Common Use: UI data binding
+- **MutableLiveData**
+    - Mutable version of Live Data
+    - Common Use: Update UI data
+- **Channel**
+    - Start: Cold-ish
+    - Replay: One-time
+    - Lifecycle aware: No
+    - Common Use: Send one-shot events between coroutines
 
 **Rule of thumb:** - Use **Flow** for streams from data sources.\
 - Use **StateFlow** for state in ViewModels.\
@@ -170,19 +174,15 @@ Steps: 1. Create a `BiometricPrompt` instance.\
 
 ## 17. Difference between sealed, open, and abstract classes?
 
-  ------------------------------------------------------------------------
-  Modifier             Description               Example Use
-  -------------------- ------------------------- -------------------------
-  **Sealed**           Restricts subclassing to  State handling
-                       same file (used for       
-                       state/result classes)     
-
-  **Open**             Allows inheritance        Extendable base classes
-
-  **Abstract**         Cannot be instantiated,   Template or base
-                       can contain abstract      implementation
-                       methods                   
-  ------------------------------------------------------------------------
+- **Sealed**
+    - Restricts subclassing to same file (used for state/result classes)
+    - Example usage: State Handling
+- **Open**
+    - Allows inheritance
+    - Example usage: Extendable base classes
+- **Abstract**
+    - Cannot be instantiated, can contain abstract methods
+    - Example usage: Template or base implementation
 
 ## 18. What is the purpose of `static`?
 
